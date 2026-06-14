@@ -22,7 +22,7 @@ def agregar_pais(paises):
                 superficie = int(input("Superficie: "))
                 break
             except ValueError:
-                print("El valor ingresado no valido. Intente nuevamente")
+                print("El valor ingresado no es valido. Intente nuevamente")
         continente = input("Continente: ")
         while continente.strip() == "":
             continente = input("Ingrese un nombre valido: ")
@@ -50,8 +50,40 @@ def buscar_pais(paises, nombre):
             return pais
     return None
 
-def actualizar_poblacion_superficie_pais():
-    pass
+def actualizar_poblacion_superficie_pais(paises):
+    nombre = input("Nombre del pais: ")
+    while nombre.strip() == "":
+        nombre = input("Ingrese un nombre valido: ")
+    pais_existente = buscar_pais(paises, nombre)
+    if pais_existente == None:
+        print("El pais ingresado no existe.")
+        return
+
+    while True:
+        try:
+            poblacion = int(input("Población: "))
+        except ValueError:
+            print("El valor ingresado no es valido. Intente nuevamente")
+            continue
+        if poblacion<0:
+            print("La poblacion no puede ser negativa. Intente nuevamente")
+            continue
+        else:
+            break
+    while True:
+        try:
+            superficie = int(input("Superficie: "))
+        except ValueError:
+            print("El valor ingresado no es valido. Intente nuevamente")
+            continue
+        if superficie<0:
+            print("La superficie no puede ser negativa. Intente nuevamente")
+            continue
+        else:
+            break
+
+    pais_existente["poblacion"] = poblacion
+    pais_existente["superficie"] = superficie
 
 def filtrar_por_continente(lista, continente):
     paises_filtrados = []
