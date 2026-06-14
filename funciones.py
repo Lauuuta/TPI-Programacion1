@@ -1,12 +1,58 @@
 #Funciones base
-def agregar_pais():
-    pass
+def agregar_pais(paises):
+    sobreescribir = ""
+    nombre = input("Nombre del país: ")
+    while nombre.strip() == "":
+        nombre = input("Ingrese un nombre valido: ")
+    pais_existente = buscar_pais(paises,nombre)
+    if not pais_existente == None:
+        print("¡El pais ya se encuentra en la lista!")
+        sobreescribir = input("¿Desea sobreescribirlo? (Si / No) : ").lower()
+        while not sobreescribir == "si" and not sobreescribir == "no":
+            sobreescribir = input("Ingrese una respuesta valida: ")
+    if sobreescribir == "" or sobreescribir == "si":
+        while True:
+            try:
+                poblacion = int(input("Población: "))
+                break
+            except ValueError:
+                print("El valor ingresado no es valido. Intente nuevamente")
+        while True:
+            try:
+                superficie = int(input("Superficie: "))
+                break
+            except ValueError:
+                print("El valor ingresado no valido. Intente nuevamente")
+        continente = input("Continente: ")
+        while continente.strip() == "":
+            continente = input("Ingrese un nombre valido: ")
+        if sobreescribir == "":
+            pais = {
+                "nombre": nombre,
+                "poblacion": poblacion,
+                "superficie": superficie,
+                "continente": continente
+            }
+            paises.append(pais)
+        else:
+            pais_existente["nombre"] = nombre
+            pais_existente["poblacion"] = poblacion
+            pais_existente["superficie"] = superficie
+            pais_existente["continente"] = continente
+    else:
+        print("Operación cancelada")
+        return
+
+
+def buscar_pais(paises, nombre):
+    for pais in paises:
+        if pais["nombre"].title() == nombre.title():
+            return pais
+    return None
 
 def actualizar_poblacion_superficie_pais():
     pass
 
-def buscar_pais():
-    pass
 #Funciones para filtrar paises
 def filtrar_por_continente():
     pass
@@ -16,6 +62,7 @@ def filtrar_por_poblacion():
 
 def filtrar_por_superficie():
     pass
+
 #Funciones para ordenar paises
 def ordenar_por_nombre():
     pass
