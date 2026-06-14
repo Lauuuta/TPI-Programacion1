@@ -104,12 +104,20 @@ def filtrar_por_superficie(lista, maxima, minima):
             paises_filtrados.append(pais)
     return paises_filtrados
 
-#Funciones para ordenar paises
-def ordenar_por_nombre():
-    pass
-
-def ordenar_por_poblacion():
-    pass
-
-def ordenar_por_superficie():
-    pass
+def ordenar_por_paises(lista, criterio, descendente=False):
+    if isinstance(descendente, str):
+        descendente = descendente.lower() == "si"
+    else:
+        descendente = bool(descendente)
+    
+    criterio_limpio = criterio.strip().lower()
+    if criterio_limpio == "nombre":
+        return sorted(lista, key=lambda x: x['nombre'], reverse=descendente)
+    elif criterio_limpio == "poblacion":
+        return sorted(lista, key=lambda x: x['poblacion'], reverse=descendente)
+    elif criterio_limpio == "superficie":
+        return sorted(lista, key=lambda x: x['superficie'], reverse=descendente)
+    else:
+        print("Criterio de ordenación no válido. Se devolverá la lista sin ordenar.")
+        return lista
+    
