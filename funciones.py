@@ -53,15 +53,24 @@ def buscar_pais(paises, nombre):
 def actualizar_poblacion_superficie_pais():
     pass
 
-#Funciones para filtrar paises
-def filtrar_por_continente():
-    pass
-
-def filtrar_por_poblacion():
-    pass
-
-def filtrar_por_superficie():
-    pass
+def filtrar_por_continente(lista, continente):
+    paises_filtrados = []
+    for pais in lista:
+        if pais['continente'].lower() == continente.lower():
+            paises_filtrados.append(pais)
+    return paises_filtrados
+def filtrar_por_poblacion(lista, maxima, minima):
+    paises_filtrados = []
+    for pais in lista:
+        if minima <= pais['poblacion'] <= maxima    :
+            paises_filtrados.append(pais)
+    return paises_filtrados
+def filtrar_por_superficie(lista, maxima, minima):
+    paises_filtrados = []
+    for pais in lista:
+        if minima <= pais['superficie'] <= maxima:
+            paises_filtrados.append(pais)
+    return paises_filtrados
 
 #Funciones para ordenar paises
 def ordenar_por_nombre():
