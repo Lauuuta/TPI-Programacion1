@@ -23,10 +23,10 @@ def agregar_pais(paises):
                 break
             except ValueError:
                 print("El valor ingresado no es valido. Intente nuevamente")
-        continente = input("Continente: ")
-        while continente.strip() == "":
-            continente = input("Ingrese un nombre valido: ")
         if sobreescribir == "":
+            continente = input("Continente: ")
+            while continente.strip() == "":
+                continente = input("Ingrese un nombre valido: ")
             pais = {
                 "nombre": nombre,
                 "poblacion": poblacion,
@@ -38,15 +38,17 @@ def agregar_pais(paises):
             pais_existente["nombre"] = nombre
             pais_existente["poblacion"] = poblacion
             pais_existente["superficie"] = superficie
-            pais_existente["continente"] = continente
     else:
         print("Operación cancelada")
         return
 
 
 def buscar_pais(paises, nombre):
+    if len(paises) == 0:
+        return None
+
     for pais in paises:
-        if pais["nombre"].title() == nombre.title():
+        if  nombre.lower() in pais["nombre"].lower():
             return pais
     return None
 
