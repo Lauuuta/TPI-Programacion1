@@ -8,6 +8,10 @@ def test_cargar_csv():
     for pais in paises:
         print(pais)
 
+if paises is None:
+    print("Cerrando el programa...")
+    exit()
+
 if __name__ == "__main__":
     test_cargar_csv()
     while True:
