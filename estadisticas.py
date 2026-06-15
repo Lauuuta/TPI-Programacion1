@@ -1,27 +1,32 @@
 #Funciones estadisticas paises
 def pais_mayor_poblacion(paises):
-    cantidad_poblacion = float("-inf")
     if len(paises) == 0:
         print("No se ingresaron paises.")
         return
-    for pais in paises:
+    
+    pais_max_poblacion = paises[0]["nombre"]
+    cantidad_poblacion = paises[0]["poblacion"]
+
+    for pais in paises[1:]:
         if pais["poblacion"] > cantidad_poblacion:
             pais_max_poblacion = pais["nombre"]
             cantidad_poblacion = pais["poblacion"]
         
-    print(f"El pais con mayor poblacion es: {pais_max_poblacion}")
+    print(f"El pais con mayor poblacion es: {pais_max_poblacion} con {cantidad_poblacion} habitantes.")
 
 def pais_menor_poblacion(paises):
-    cantidad_poblacion = float("inf")
     if len(paises) == 0:
         print("No se ingresaron paises.")
         return
-    for pais in paises:
+    pais_min_poblacion = paises[0]["nombre"]
+    cantidad_poblacion = paises[0]["poblacion"]
+
+    for pais in paises[1:]:
         if pais["poblacion"] < cantidad_poblacion:
             pais_min_poblacion = pais["nombre"]
             cantidad_poblacion = pais["poblacion"]
         
-    print(f"El pais con menor poblacion es: {pais_min_poblacion}")
+    print(f"El pais con menor poblacion es: {pais_min_poblacion} con {cantidad_poblacion} habitantes.")
 
 def promedio_poblacion(paises):
     if len(paises) == 0:
