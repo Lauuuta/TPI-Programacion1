@@ -2,6 +2,7 @@ import os
 
 from archivos import cargar_csv, guardar_csv
 from funciones import actualizar_poblacion_superficie_pais, agregar_pais, filtrar_por_continente, filtrar_por_poblacion, filtrar_por_superficie, buscar_pais,ordenar_por_paises
+from estadisticas import pais_mayor_poblacion, pais_menor_poblacion, promedio_poblacion, promedio_superficie
 ruta = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'paises.csv')
 paises = cargar_csv('paises.csv')
 def test_cargar_csv():
@@ -104,13 +105,33 @@ if __name__ == "__main__":
                         print(f"- {pais['nombre']} (Pob: {pais['poblacion']} | Sup: {pais['superficie']} km²)")
         elif opcion == "5":
             criterio = input("Ingrese el criterio por el cual desea ordenar (nombre, poblacion, superficie): ").lower()
-            descendente = input("¿Desea ordenar de forma descendente? (si/no): ").lower() == "si"
+            while criterio not in ['nombre', 'poblacion', 'superficie']:
+                criterio = input("Opción no válida. Por favor, ingrese 'nombre', 'poblacion' o 'superficie': ").lower()
+            orden = input("¿Desea ordenar de forma descendente? (si/no): ").lower().strip()
+            while orden not in ['si', 'no']:
+                orden = input("Opción no válida. Por favor, ingrese 'si' o 'no': ").lower().strip()
+            descendente = orden == "si"
             paises_ordenados = ordenar_por_paises(paises, criterio, descendente)
-            print(f"\n✅ Países ordenados por {criterio}:")
+            print(f"\n✅ Países ordenados por {criterio} en forma {'descendente' if descendente else 'ascendente'}")
             for pais in paises_ordenados:
                 print(f"- {pais['nombre']} (Pob: {pais['poblacion']} | Sup: {pais['superficie']} km²)")
         elif opcion == "6":
-            print("Funcionalidad de estadísticas aún no implementada.")
+            print("\nEstadísticas disponibles:")
+            print("1. País con mayor población")
+            print("2. País con menor población")
+            print("3. Promedio de población")
+            print("4. Promedio de superficie")
+            estadistica_opcion = input("Ingrese el número de la estadística que desea ver: ")
+            if estadistica_opcion == "1":
+                pais_mayor_poblacion(paises)
+            elif estadistica_opcion == "2":
+                pais_menor_poblacion(paises)
+            elif estadistica_opcion == "3":
+                promedio_poblacion(paises)
+            elif estadistica_opcion == "4":
+                promedio_superficie(paises)
+            else:
+                print("Opción no válida. Por favor, ingrese un número entre 1 y 4.")
         elif opcion == "7":
             print("¡Datos guardados! Saliendo del programa...")
             break
