@@ -4,10 +4,10 @@ Tecnicatura Universitaria en Programación - UTN
 La aplicación consiste en la gestión informacion sobre países: Permite agregar, buscar, filtrar, ordenar y obtener estadísticas a partir de un archivo CSV.
 
 Intregrantes 
-Flores Alejo - DNI: 44785707
+Flores Alejo - DNI: 44785707  
 Delgadillo Lautaro - DNI: 45543682
 
-Instruciones 
+Instruciones  
 Para ejecutar el programa se debe correr el archivo main.py
 
 Opciones del menu:
@@ -21,41 +21,41 @@ Opciones del menu:
 
 Estructura 
 TPI-Programacion1/
-    -main.py: menú principal y punto de inicio del programa 
-    -funciones.py: lógica de búsqueda, filtros y ordenamiento 
-    -archivos.py: lectura y escritura del CSV
-    -estadisticas.py: cálculos de estadísticas 
-    -paises.csv: archivos con los datos 
+    - main.py: menú principal y punto de inicio del programa  
+    - funciones.py: lógica de búsqueda, filtros y ordenamiento   
+    - archivos.py: lectura y escritura del CSV  
+    - estadisticas.py: cálculos de estadísticas  
+    - paises.csv: archivos con los datos  
 
 Ejemplos de funcionalidades 
-** Buscar un pais por su numbre 
-    Ingrese el nombre del país a buscar: argentina
-    ✅ País encontrado: Argentina
-** Filtrar por continente, poblacion o superficie 
-    por continente 
-    Ingrese el continente a filtrar: asia 
-    ✅ Se encontraron 1 países:
+** Buscar un pais por su numbre  
+    Ingrese el nombre del país a buscar: argentina  
+    ✅ País encontrado: Argentina  
+** Filtrar por continente, poblacion o superficie   
+    por continente  
+    Ingrese el continente a filtrar: asia  
+    ✅ Se encontraron 1 países:  
     - Japon (Pob: 125800000 | Sup: 3779750 km²)
-    por poblacion
-    Ingrese la población mínima: 45376760
-    Ingrese la población máxima: 45376770
-    ✅ Se encontraron 1 países:
+    por poblacion  
+    Ingrese la población mínima: 45376760  
+    Ingrese la población máxima: 45376770  
+    ✅ Se encontraron 1 países:  
     - Argentina (Pob: 45376763 | Sup: 27804000 km²)
-    por superficie 
-    Ingrese la superficie mínima: 85157660
-    Ingrese la superficie máxima: 85157680
-    ✅ Se encontraron 1 países:
-    - Brasil (Pob: 213993437 | Sup: 85157670 km²)
-**Ordenar por nombre, población o superficie
-    Ingrese el criterio por el cual desea ordenar (nombre, poblacion, superficie): nombre
-    ¿Desea ordenar de forma descendente? (si/no): si
-    ✅ Países ordenados por nombre en forma descendente
-    - Sudafrica (Pob: 59308000 | Sup: 12210370 km²)
-    - Japon (Pob: 125800000 | Sup: 3779750 km²)
-    - Brasil (Pob: 213993437 | Sup: 85157670 km²)
-    - Australia (Pob: 25690000 | Sup: 76920240 km²)
-    - Argentina (Pob: 45376763 | Sup: 27804000 km²)
-    - Alemania (Pob: 83149300 | Sup: 3570220 km²)
+    por superficie  
+    Ingrese la superficie mínima: 85157660  
+    Ingrese la superficie máxima: 85157680  
+    ✅ Se encontraron 1 países:  
+    - Brasil (Pob: 213993437 | Sup: 85157670 km²)  
+**Ordenar por nombre, población o superficie  
+    Ingrese el criterio por el cual desea ordenar (nombre, poblacion, superficie): nombre  
+    ¿Desea ordenar de forma descendente? (si/no): si  
+    ✅ Países ordenados por nombre en forma descendente  
+    - Sudafrica (Pob: 59308000 | Sup: 12210370 km²)  
+    - Japon (Pob: 125800000 | Sup: 3779750 km²)  
+    - Brasil (Pob: 213993437 | Sup: 85157670 km²)  
+    - Australia (Pob: 25690000 | Sup: 76920240 km²)  
+    - Argentina (Pob: 45376763 | Sup: 27804000 km²)  
+    - Alemania (Pob: 83149300 | Sup: 3570220 km²)  
 
     Ingrese el criterio por el cual desea ordenar (nombre, poblacion, superficie): nombre
     ¿Desea ordenar de forma descendente? (si/no): no
