@@ -1,22 +1,21 @@
+"""Programa para gestionar información de países a través de un menú interactivo."""
 import os
-
 from archivos import cargar_csv, guardar_csv
 from funciones import actualizar_poblacion_superficie_pais, agregar_pais, filtrar_por_continente, filtrar_por_poblacion, filtrar_por_superficie, buscar_pais,ordenar_por_paises
 from estadisticas import pais_mayor_poblacion, pais_menor_poblacion, promedio_poblacion, promedio_superficie
 ruta = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'paises.csv')
-paises = cargar_csv('paises.csv')
+paises = cargar_csv(ruta)
 def test_cargar_csv():
-    print("Probando cargar_csv...")
     print("Paises cargados:")
     for pais in paises:
         print(pais)
 
-if paises is None:
+if not paises:
     print("Cerrando el programa...")
     exit()
 
 if __name__ == "__main__":
-    test_cargar_csv()
+    # test_cargar_csv()
     while True:
         print("Que desea hacer?")
         print("1. Agregar un nuevo país")
@@ -32,12 +31,17 @@ if __name__ == "__main__":
         elif opcion == "2":
             actualizar_poblacion_superficie_pais(paises)
         elif opcion == "3":
-            nombre_buscar = input("Ingrese el nombre del país a buscar: ")
+            while True:
+                nombre_buscar = input("Ingrese el nombre del país a buscar: ")
+                if nombre_buscar.strip() == "":
+                    print("El nombre no puede estar vacío. Intente nuevamente.")
+                else:
+                    break
             pais_encontrado = buscar_pais(paises, nombre_buscar)
             if pais_encontrado:
                 print(f"✅ País encontrado: {pais_encontrado['nombre']}")
             else:
-                print(f"❌ País no encontrado.")
+                print(f" País no encontrado.")
         elif opcion == "4":
             filtro = input("¿Desea filtrar por continente, población o superficie? (Ingrese 'continente', 'poblacion' o 'superficie'): ").lower()
             while filtro not in ['continente', 'poblacion', 'superficie']:
@@ -46,7 +50,7 @@ if __name__ == "__main__":
                 continente_usuario = input("Ingrese el continente a filtrar: ")
                 resultados = filtrar_por_continente(paises, continente_usuario)
                 if not resultados:
-                    print(f"\nNo se encontraron países en el continente '{continente_usuario}'.") 
+                    print(f"\nNo se encontraron países en el continente '{continente_usuario}'.")
                 else:
                     print(f"\n✅ Se encontraron {len(resultados)} países:")
                     for pais in resultados:
@@ -61,22 +65,25 @@ if __name__ == "__main__":
                         break
                     except ValueError:
                         print("Por favor, ingrese un número válido para la población.")
-                while True:             
+                while True:   
                     try:
-                        poblacion_maxima = int(input("'\nIngrese la población máxima: "))
+                        poblacion_maxima = int(input("\nIngrese la población máxima: "))
                         if poblacion_maxima < 0:
                             print("La población máxima no puede ser negativa. Intente nuevamente.")
                             continue
                         break
                     except ValueError:
                         print("Por favor, ingrese un número válido para la población.")
-                resultados = filtrar_por_poblacion(paises, poblacion_maxima, poblacion_minima)
-                if not resultados:
-                    print(f"\nNo se encontraron países con una población entre {poblacion_minima} y {poblacion_maxima} habitantes.")
+                if poblacion_minima > poblacion_maxima:
+                    print("La población mínima no puede ser mayor que la máxima. Intente nuevamente.")
                 else:
-                    print(f"\n✅ Se encontraron {len(resultados)} países:")
-                    for pais in resultados:
-                        print(f"- {pais['nombre']} (Pob: {pais['poblacion']} | Sup: {pais['superficie']} km²)")
+                    resultados = filtrar_por_poblacion(paises, poblacion_maxima, poblacion_minima)
+                    if not resultados:
+                        print(f"\nNo se encontraron países con una población entre {poblacion_minima} y {poblacion_maxima} habitantes.")
+                    else:
+                        print(f"\n✅ Se encontraron {len(resultados)} países:")
+                        for pais in resultados:
+                            print(f"- {pais['nombre']} (Pob: {pais['poblacion']} | Sup: {pais['superficie']} km²)")
             elif filtro == 'superficie':
                 while True:
                     try:
@@ -96,13 +103,16 @@ if __name__ == "__main__":
                         break
                     except ValueError:
                         print("Por favor, ingrese un número válido para la superficie.")
-                resultados = filtrar_por_superficie(paises, superficie_maxima, superficie_minima)
-                if not resultados:
-                    print(f"\nNo se encontraron países con una superficie entre {superficie_minima} y {superficie_maxima} km².")
+                if superficie_minima > superficie_maxima:
+                    print("La superficie mínima no puede ser mayor que la máxima. Intente nuevamente.")
                 else:
-                    print(f"\n✅ Se encontraron {len(resultados)} países:")
-                    for pais in resultados:
-                        print(f"- {pais['nombre']} (Pob: {pais['poblacion']} | Sup: {pais['superficie']} km²)")
+                    resultados = filtrar_por_superficie(paises, superficie_maxima, superficie_minima)
+                    if not resultados:
+                        print(f"\nNo se encontraron países con una superficie entre {superficie_minima} y {superficie_maxima} km².")
+                    else:
+                        print(f"\n✅ Se encontraron {len(resultados)} países:")
+                        for pais in resultados:
+                            print(f"- {pais['nombre']} (Pob: {pais['poblacion']} | Sup: {pais['superficie']} km²)")
         elif opcion == "5":
             criterio = input("Ingrese el criterio por el cual desea ordenar (nombre, poblacion, superficie): ").lower()
             while criterio not in ['nombre', 'poblacion', 'superficie']:
@@ -122,6 +132,8 @@ if __name__ == "__main__":
             print("3. Promedio de población")
             print("4. Promedio de superficie")
             estadistica_opcion = input("Ingrese el número de la estadística que desea ver: ")
+            while estadistica_opcion not in ['1', '2', '3', '4']:
+                estadistica_opcion = input("Opción no válida. Por favor, ingrese un número entre 1 y 4: ")
             if estadistica_opcion == "1":
                 pais_mayor_poblacion(paises)
             elif estadistica_opcion == "2":
@@ -133,5 +145,6 @@ if __name__ == "__main__":
             else:
                 print("Opción no válida. Por favor, ingrese un número entre 1 y 4.")
         elif opcion == "7":
+            guardar_csv(paises, ruta)
             print("¡Datos guardados! Saliendo del programa...")
             break

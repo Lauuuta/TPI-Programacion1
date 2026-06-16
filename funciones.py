@@ -14,12 +14,18 @@ def agregar_pais(paises):
         while True:
             try:
                 poblacion = int(input("Población: "))
+                if poblacion < 0:
+                    print("La población no puede ser negativa. Intente nuevamente.")
+                    continue
                 break
             except ValueError:
                 print("El valor ingresado no es valido. Intente nuevamente")
         while True:
             try:
-                superficie = int(input("Superficie: "))
+                superficie = float(input("Superficie: "))
+                if superficie < 0:
+                    print("La superficie no puede ser negativa. Intente nuevamente.")
+                    continue
                 break
             except ValueError:
                 print("El valor ingresado no es valido. Intente nuevamente")
@@ -38,6 +44,7 @@ def agregar_pais(paises):
             pais_existente["nombre"] = nombre
             pais_existente["poblacion"] = poblacion
             pais_existente["superficie"] = superficie
+            pais_existente["continente"] = continente
     else:
         print("Operación cancelada")
         return
@@ -48,7 +55,7 @@ def buscar_pais(paises, nombre):
         return None
 
     for pais in paises:
-        if  nombre.lower() in pais["nombre"].lower():
+        if  pais["nombre"].lower() == nombre.lower():
             return pais
     return None
 
@@ -74,7 +81,7 @@ def actualizar_poblacion_superficie_pais(paises):
             break
     while True:
         try:
-            superficie = int(input("Superficie: "))
+            superficie = float(input("Superficie: "))
         except ValueError:
             print("El valor ingresado no es valido. Intente nuevamente")
             continue
