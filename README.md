@@ -1,18 +1,16 @@
-** Trabajo Practico Integrador -- Programacion 1**
-Tecnicatura Universitraraia en Programacion -- UTN 
+** Trabajo Practico Integrador -- Programación 1**
+Tecnicatura Universitaria en Programación - UTN 
 
-La aplicacion conciste en gestionar informacion sobre los paises: agregar, buscar, filtrar, ordenar y obtener estadisticas a partir de un archivo csv
+La aplicación consiste en la gestión informacion sobre países: Permite agregar, buscar, filtrar, ordenar y obtener estadísticas a partir de un archivo CSV.
 
 Intregrantes 
-Flores Alejo
-44785707
-
-Delgadillo Lautaro 
+Flores Alejo - DNI: 44785707
+Delgadillo Lautaro - DNI: 45543682
 
 Instruciones 
-Ejecutar archivo main.py 
+Para ejecutar el programa se debe correr el archivo main.py
 
-opciones del menu:
+Opciones del menu:
 1. Agregar un nuevo país
 2. Actualizar datos de población o superficie
 3. Buscar un país por nombre
@@ -23,11 +21,11 @@ opciones del menu:
 
 Estructura 
 TPI-Programacion1/
-    -main.py #Menu principal y punto inicial de partido 
-    -funciones.py #Logica de busqueda, filtros y ordenamiento 
-    -archivos.py #lectura y escritura del CSV
-    -estadisticas.py #calculos de estadisticas 
-    -paises.csv #Dataset base 
+    -main.py: menú principal y punto de inicio del programa 
+    -funciones.py: lógica de búsqueda, filtros y ordenamiento 
+    -archivos.py: lectura y escritura del CSV
+    -estadisticas.py: cálculos de estadísticas 
+    -paises.csv: archivos con los datos 
 
 Ejemplos de funcionalidades 
 ** Buscar un pais por su numbre 
