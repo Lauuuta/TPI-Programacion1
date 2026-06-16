@@ -135,3 +135,5 @@ if __name__ == "__main__":
         elif opcion == "7":
             print("¡Datos guardados! Saliendo del programa...")
             break
+        else:
+            print("La opcion ingresa no es valida. Intente nuevamente")
